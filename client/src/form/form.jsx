@@ -44,6 +44,30 @@ const Form = () => {
                 value = {employeeData.firstName} 
                 onChange={handleChage} 
             /> 
+
+            Image 
+            <input 
+                type = "text" 
+                name = "lastName" 
+                value = {employeeData.firstName} 
+                onChange={handleChage} 
+            /> 
+
+            Email Address
+            <input 
+                type = "text" 
+                name = "lastName" 
+                value = {employeeData.firstName} 
+                onChange={handleChage} 
+            /> 
+
+            Position
+            <input 
+                type = "text" 
+                name = "lastName" 
+                value = {employeeData.firstName} 
+                onChange={handleChage} 
+            /> 
             <button type = "submit" >Submit</button>
         </form>
         </div>
