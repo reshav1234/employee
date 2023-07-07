@@ -1,0 +1,30 @@
+.employee-card {
+    background-color: #121111;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+  
+  .employee-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .employee-card .performance-values {
+    margin-bottom: 10px;
+  }
+  
+  .employee-card .performance-values p {
+    margin: 0;
+  }
+  
+  .employee-card .performance-values p span {
+    font-weight: bold;
+  }
+  
+  .employee-card .overall-performance {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
