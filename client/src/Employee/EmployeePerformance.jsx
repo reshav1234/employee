@@ -4,12 +4,13 @@ import './Employee.css'
 
 const EmployeeCard = ({ emp, kpis }) => {
   const { id, name, position, kpiData } = emp;
-
+  console.log(id)
   const calculateOverallPerformance = () => {
     const overallPerformance =
       ((kpiData[0] / 100) * 33.33) +
       ((kpiData[1] / 100) * 33.33) +
-      ((kpiData[2] / 100) * 33.33);
+      ((kpiData[2] / 100) * 33.33)+
+      ((kpiData[3] / 100) * 33.33);
 
     return overallPerformance.toFixed(2);
   };
@@ -40,7 +41,7 @@ const EmployeeList = ({ kpis }) => {
     id: '',
     name: '',
     position: '',
-    kpiData: [0, 0, 0],
+    kpiData: [0, 0, 0, 0],
   });
 
   const handleInputChange = (event) => {
@@ -64,14 +65,29 @@ const EmployeeList = ({ kpis }) => {
   };
 
   const addEmployee = () => {
-    setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
-    setNewEmployee({
-      id: '',
-      name: '',
-      position: '',
-      kpiData: [0, 0, 0],
-    });
+    fetch('http://localhost:8000/employees', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEmployee),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Employee added successfully:', data);
+        setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+        setNewEmployee({
+          id: '',
+          name: '',
+          position: '',
+          kpiData: [0, 0, 0, 0],
+        });
+      })
+      .catch((error) => {
+        console.error('Error adding employee:', error);
+      });
   };
+  
 
   return (
     <>
@@ -132,7 +148,7 @@ const EmployeeList = ({ kpis }) => {
 };
 
 const EmployeePerformance = () => {
-  const [kpis] = useState(['Sales', 'Customer Satisfaction', 'Productivity']);
+  const [kpis] = useState(['Sales', 'Customer Satisfaction', 'Productivity', 'Gross Margin']);
 
   return (
     <div>
