@@ -1,91 +1,49 @@
 import './form.css'
-import {useState} from 'react'
+import React, { useState } from 'react';
 
-const Form = () => {
-    const [employeeData, setEmpData] = useState({
-        firstName: '',
-        lastName : '',
-        email : '',
-        position: '',
-        image : '',
-        address: '',
-    })
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleChage = (e) => {
-        const {name, value}  = e.target // trigger the event from DOM
-        setEmpData((prevData) => ({...prevData, [name]: value})) // update the name from input field
-    }
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(employeeData)
-        setEmpData({
-            firstName: '',
-            lastName : '',
-            image : '',
-            email: '',
-            position : '',
-            address: '',
-        })
-    }
-    return (
-    <>
-        <div className = "form">
-            <form onSubmit={handleSubmit}>
-                <input 
-                    placeholder='First Name'
-                    type = "text" 
-                    name = "firstName" 
-                    value = {employeeData.firstName} 
-                    onChange={handleChage} 
-                /> 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
-                <input 
-                    placeholder='Last Name'
-                    type = "text" 
-                    name = "lastName" 
-                    value = {employeeData.lastName} 
-                    onChange={handleChage} 
-                /> 
-             
-                <input 
-                    placeholder='Email'
-                    type = "email" 
-                    name = "email" 
-                    value = {employeeData.email} 
-                    onChange={handleChage} 
-                /> 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Send the username and password to the server for authentication
+    // Here you can make an API request to your backend server to verify the credentials
+    // and obtain a JWT token
 
+    // After successful authentication, you can store the token in local storage or a cookie
+    // for subsequent authenticated requests
 
-                <input 
-                    placeholder='Position'
-                    type = "text" 
-                    name = "position" 
-                    value = {employeeData.position} 
-                    onChange={handleChage} 
-                /> 
+    // Reset the form inputs
+    setUsername('');
+    setPassword('');
+  };
 
-                <input 
-                    placeholder='Address'
-                    type = "text" 
-                    name = "address" 
-                    value = {employeeData.address} 
-                    onChange={handleChage} 
-                /> 
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={handleUsernameChange}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={handlePasswordChange}
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+};
 
-                <div className='profile-photo'>
-                    <input style = {{display:"none"}}type='file' id="file"/>
-                    <span class="material-symbols-outlined">account_circle</span>
-                    <label htmlFor='file'>Choose your profile picture</label>
-                </div>
-                
-                <div className='button'>
-                    <button type = "submit" >Submit</button>
-                </div>
-            </form>
-        </div>
-    </>
-  )
-}
-
-export default Form
+export default LoginForm;
