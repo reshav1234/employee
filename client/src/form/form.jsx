@@ -1,3 +1,4 @@
+import './form.css'
 import {useState} from 'react'
 
 const Form = () => {
@@ -7,11 +8,12 @@ const Form = () => {
         email : '',
         position: '',
         image : '',
+        address: '',
     })
 
     const handleChage = (e) => {
         const {name, value}  = e.target // trigger the event from DOM
-        setEmpData((pervData) => ({...pervData, [name]: value})) // update the name from input field
+        setEmpData((prevData) => ({...prevData, [name]: value})) // update the name from input field
     }
 
     const handleSubmit = (e) => {
@@ -20,56 +22,67 @@ const Form = () => {
         setEmpData({
             firstName: '',
             lastName : '',
-            email : '',
-            position: '',
             image : '',
+            email: '',
+            position : '',
+            address: '',
         })
     }
     return (
     <>
         <div className = "form">
-        <form onSubmit={handleSubmit}>
-            First Name: 
-            <input 
-                type = "text" 
-                name = "firstName" 
-                value = {employeeData.firstName} 
-                onChange={handleChage} 
-            /> 
+            <form onSubmit={handleSubmit}>
+                <input 
+                    placeholder='First Name'
+                    type = "text" 
+                    name = "firstName" 
+                    value = {employeeData.firstName} 
+                    onChange={handleChage} 
+                /> 
 
-            Last Name: 
-            <input 
-                type = "text" 
-                name = "lastName" 
-                value = {employeeData.firstName} 
-                onChange={handleChage} 
-            /> 
+                <input 
+                    placeholder='Last Name'
+                    type = "text" 
+                    name = "lastName" 
+                    value = {employeeData.lastName} 
+                    onChange={handleChage} 
+                /> 
+             
+                <input 
+                    placeholder='Email'
+                    type = "email" 
+                    name = "email" 
+                    value = {employeeData.email} 
+                    onChange={handleChage} 
+                /> 
 
-            Image 
-            <input 
-                type = "text" 
-                name = "lastName" 
-                value = {employeeData.firstName} 
-                onChange={handleChage} 
-            /> 
 
-            Email Address
-            <input 
-                type = "text" 
-                name = "lastName" 
-                value = {employeeData.firstName} 
-                onChange={handleChage} 
-            /> 
+                <input 
+                    placeholder='Position'
+                    type = "text" 
+                    name = "position" 
+                    value = {employeeData.position} 
+                    onChange={handleChage} 
+                /> 
 
-            Position
-            <input 
-                type = "text" 
-                name = "lastName" 
-                value = {employeeData.firstName} 
-                onChange={handleChage} 
-            /> 
-            <button type = "submit" >Submit</button>
-        </form>
+                <input 
+                    placeholder='Address'
+                    type = "text" 
+                    name = "address" 
+                    value = {employeeData.address} 
+                    onChange={handleChage} 
+                /> 
+
+                <div className='profile-photo'>
+                    <input style = {{display:"none"}}type='file' id="file"/>
+                    <span class="material-symbols-outlined">account_circle</span>
+                    <label htmlFor='file'>Choose your profile picture</label>
+                </div>
+                
+                <div className='button'>
+                    <button type = "submit" >Submit</button>
+                </div>
+            </form>
         </div>
     </>
   )
